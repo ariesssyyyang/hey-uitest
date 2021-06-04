@@ -10,22 +10,32 @@ import UIKit
 class ViewController: UIViewController {
 
     private let tableView = UITableView()
-    private var contacts: [(name: String, phoneNumber: String)] = []
+
+    private let emptyView: UIView = {
+        let label = UILabel()
+        label.text = "Tap + button to add contacts."
+        label.textColor = .lightGray
+        label.textAlignment = .center
+        return label
+    }()
+
+    private var contacts: [(name: String, phoneNumber: String)] = [] {
+        didSet {
+            tableView.reloadData()
+            updateEmptyView()
+        }
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
         setupNavBar()
         setupTableView()
-        setupEmptyView()
+        updateEmptyView()
     }
 
-    private func setupEmptyView() {
-        let label = UILabel()
-        label.text = "Tap + button to add contacts."
-        label.textColor = .lightGray
-        label.textAlignment = .center
-        tableView.backgroundView = label
+    private func updateEmptyView() {
+        tableView.backgroundView = contacts.isEmpty ? emptyView : nil
     }
 
     private func setupNavBar() {
@@ -45,7 +55,15 @@ class ViewController: UIViewController {
             $0.placeholder = "Phone number"
             $0.keyboardType = .numberPad
         })
-        alert.addAction(UIAlertAction(title: "Done", style: .default, handler: nil))
+        let add = UIAlertAction(title: "Done", style: .default) { [weak self] _ in
+            guard
+                let self = self,
+                let name = alert.textFields?.first?.text,
+                let phoneNumber = alert.textFields?.last?.text
+            else { return }
+            self.contacts.append((name, phoneNumber))
+        }
+        alert.addAction(add)
         present(alert, animated: true, completion: nil)
     }
 
