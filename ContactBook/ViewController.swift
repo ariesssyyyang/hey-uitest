@@ -39,6 +39,11 @@ class ViewController: UIViewController {
             message: "Please enter the information.",
             preferredStyle: .alert
         )
+        alert.addTextField(configurationHandler: { $0.placeholder = "Name" })
+        alert.addTextField(configurationHandler: {
+            $0.placeholder = "Phone number"
+            $0.keyboardType = .numberPad
+        })
         alert.addAction(UIAlertAction(title: "Done", style: .default, handler: nil))
         present(alert, animated: true, completion: nil)
     }
