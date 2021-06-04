@@ -76,4 +76,30 @@ class ContactBookUITests: XCTestCase {
         XCTAssertTrue(phoneNumber.exists)
         XCTAssertFalse(emptyLabel.exists)
     }
+
+    func testTapCancelButtonWithInputs() {
+        let app = XCUIApplication()
+        app.launch()
+
+        let addButton = app.navigationBars.buttons["rightBarButtonItem_addButton"]
+        addButton.tap()
+
+        let nameField = app.textFields["Name"]
+        nameField.tap()
+        nameField.typeText("Steve Jobs")
+
+        let phoneField = app.textFields["Phone number"]
+        phoneField.tap()
+        phoneField.typeText("0912345678")
+
+        let cancel = app.buttons["Cancel"]
+        cancel.tap()
+
+        let name = app.staticTexts["👤 Steve Jobs"]
+        let phoneNumber = app.staticTexts["📱 0912345678"]
+        let emptyLabel = app.staticTexts["Tap + button to add contacts."]
+        XCTAssertFalse(name.exists)
+        XCTAssertFalse(phoneNumber.exists)
+        XCTAssertTrue(emptyLabel.exists)
+    }
 }
