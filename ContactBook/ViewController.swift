@@ -14,20 +14,17 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
-        setupEmptyView()
         setupNavBar()
         setupTableView()
+        setupEmptyView()
     }
 
     private func setupEmptyView() {
         let label = UILabel()
         label.text = "Tap + button to add contacts."
         label.textColor = .lightGray
-        label.center = view.center
-        view.addSubview(label)
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        label.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
+        label.textAlignment = .center
+        tableView.backgroundView = label
     }
 
     private func setupNavBar() {
