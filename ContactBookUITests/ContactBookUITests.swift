@@ -42,11 +42,13 @@ class ContactBookUITests: XCTestCase {
         let nameField = app.textFields["Name"]
         let phoneField = app.textFields["Phone number"]
         let done = app.buttons["Done"]
+        let cancel = app.buttons["Cancel"]
         XCTAssertTrue(title.exists)
         XCTAssertTrue(description.exists)
         XCTAssertTrue(nameField.exists)
         XCTAssertTrue(phoneField.exists)
         XCTAssertTrue(done.exists)
+        XCTAssertTrue(cancel.exists)
     }
 
     func testTapDoneButtonWithInputs() {
