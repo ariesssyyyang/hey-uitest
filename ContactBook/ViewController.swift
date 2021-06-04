@@ -13,6 +13,7 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = .white
         setupEmptyView()
+        setupNavBar()
     }
 
     private func setupEmptyView() {
@@ -24,6 +25,16 @@ class ViewController: UIViewController {
         label.translatesAutoresizingMaskIntoConstraints = false
         label.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         label.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
+    }
+
+    private func setupNavBar() {
+        let addButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(showInputAlert))
+        addButton.accessibilityIdentifier = "rightBarButtonItem_addButton"
+        navigationItem.rightBarButtonItem = addButton
+    }
+
+    @objc func showInputAlert() {
+
     }
 }
 
