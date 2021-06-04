@@ -9,11 +9,14 @@ import UIKit
 
 class ViewController: UIViewController {
 
+    private let tableView = UITableView()
+
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
         setupEmptyView()
         setupNavBar()
+        setupTableView()
     }
 
     private func setupEmptyView() {
@@ -46,6 +49,18 @@ class ViewController: UIViewController {
         })
         alert.addAction(UIAlertAction(title: "Done", style: .default, handler: nil))
         present(alert, animated: true, completion: nil)
+    }
+
+    private func setupTableView() {
+        tableView.separatorStyle = .none
+        view.addSubview(tableView)
+        tableView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            tableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            tableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
+        ])
     }
 }
 
