@@ -34,7 +34,13 @@ class ViewController: UIViewController {
     }
 
     @objc func showInputAlert() {
-
+        let alert = UIAlertController(
+            title: "Add a contact",
+            message: "Please enter the information.",
+            preferredStyle: .alert
+        )
+        alert.addAction(UIAlertAction(title: "Done", style: .default, handler: nil))
+        present(alert, animated: true, completion: nil)
     }
 }
 
