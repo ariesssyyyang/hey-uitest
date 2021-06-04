@@ -33,9 +33,13 @@ class ContactBookUITests: XCTestCase {
 
         let title = app.staticTexts["Add a contact"]
         let description = app.staticTexts["Please enter the information."]
+        let nameField = app.textFields["Name"]
+        let phoneField = app.textFields["Phone number"]
         let done = app.buttons["Done"]
         XCTAssertTrue(title.exists)
         XCTAssertTrue(description.exists)
+        XCTAssertTrue(nameField.exists)
+        XCTAssertTrue(phoneField.exists)
         XCTAssertTrue(done.exists)
     }
 }
