@@ -21,4 +21,12 @@ class ContactBookUITests: XCTestCase {
         let emptyLabel = app.staticTexts["Tap + button to add contacts."]
         XCTAssertTrue(emptyLabel.exists)
     }
+
+    func testRightBarButtonItem() {
+        let app = XCUIApplication()
+        app.launch()
+
+        let addButton = app.navigationBars.buttons["rightBarButtonItem_addButton"]
+        XCTAssertTrue(addButton.exists)
+    }
 }
