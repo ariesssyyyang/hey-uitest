@@ -64,6 +64,7 @@ class ViewController: UIViewController {
             self.contacts.append((name, phoneNumber))
         }
         alert.addAction(add)
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel))
         present(alert, animated: true, completion: nil)
     }
 
