@@ -28,5 +28,14 @@ class ContactBookUITests: XCTestCase {
 
         let addButton = app.navigationBars.buttons["rightBarButtonItem_addButton"]
         XCTAssertTrue(addButton.exists)
+
+        addButton.tap()
+
+        let title = app.staticTexts["Add a contact"]
+        let description = app.staticTexts["Please enter the information."]
+        let done = app.buttons["Done"]
+        XCTAssertTrue(title.exists)
+        XCTAssertTrue(description.exists)
+        XCTAssertTrue(done.exists)
     }
 }
