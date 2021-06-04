@@ -91,8 +91,8 @@ extension ViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "THECELL", for: indexPath)
         var content = cell.defaultContentConfiguration()
-        content.text = contacts[indexPath.row].name
-        content.secondaryText = contacts[indexPath.row].phoneNumber
+        content.text = "👤 \(contacts[indexPath.row].name)"
+        content.secondaryText = "📱 \(contacts[indexPath.row].phoneNumber)"
         cell.contentConfiguration = content
         return cell
     }
