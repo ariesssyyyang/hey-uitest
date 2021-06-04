@@ -10,6 +10,7 @@ import UIKit
 class ViewController: UIViewController {
 
     private let tableView = UITableView()
+    private var contacts: [(name: String, phoneNumber: String)] = []
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -50,6 +51,8 @@ class ViewController: UIViewController {
 
     private func setupTableView() {
         tableView.separatorStyle = .none
+        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "THECELL")
+        tableView.dataSource = self
         view.addSubview(tableView)
         tableView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
@@ -59,5 +62,22 @@ class ViewController: UIViewController {
             tableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
         ])
     }
+}
+
+extension ViewController: UITableViewDataSource {
+
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        contacts.count
+    }
+
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "THECELL", for: indexPath)
+        var content = cell.defaultContentConfiguration()
+        content.text = contacts[indexPath.row].name
+        content.secondaryText = contacts[indexPath.row].phoneNumber
+        cell.contentConfiguration = content
+        return cell
+    }
+
 }
 
